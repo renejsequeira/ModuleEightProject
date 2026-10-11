@@ -137,12 +137,13 @@ public class BookMenu {
 							String bt="";
 							System.out.println("Enter book title or partial title to search in Library database:");
 							bt = kb.nextLine();
+							
 							bookTitle =inventory.searchByTitle(bt);
 							if(bookTitle.isEmpty()) {
 								System.out.println("No matching titles found.");
 							}
 							for(Book t:bookTitle) {
-								System.out.println("Matching book titles: "+ t );
+								System.out.println("Matching book titles: "+ t.getTitle() );
 							}
 							}catch(InputMismatchException e) {
 								System.out.println("Invalid Book title format. Enter correct or partial book title.");
