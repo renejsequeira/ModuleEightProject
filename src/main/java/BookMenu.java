@@ -2,7 +2,7 @@ import java.util.*;
 public class BookMenu {
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
-		int option = 0; // Initialized to 0 for the loop condition
+		int option = 0; 
 		boolean input = true;
 		String response = "";
 		int bookID;
@@ -15,14 +15,14 @@ public class BookMenu {
 		
 		
 		do {
-			// Printing the menu inside the loop so it reappears after an action finishes
+			
 			System.out.println("\n1.Add Book\t\t3.Return Book\t\t5.Print All Books\n" +
 			                   "2.Borrow Book\t\t4.Search By Title\t6.Exit");
 			
 			try {
 				System.out.println("Enter a menu option: ");
 				option = kb.nextInt();
-				kb.nextLine(); // Clear buffer
+				kb.nextLine(); 
 			
 				if (option < 1 || option > 6) {
 					System.out.println("Wrong menu option. Enter a number from 1 to 6");
@@ -33,13 +33,13 @@ public class BookMenu {
 								try {
 									System.out.println("Enter book ID, book title, author, ISBN number, and number of pages:");
 									bookID = kb.nextInt();
-									kb.nextLine(); // Clear buffer after int
+									kb.nextLine(); 
 									title = kb.nextLine();
 									author = kb.nextLine();
 									
 									ISBN = kb.nextInt();
 									pages = kb.nextInt();
-									kb.nextLine(); // Clear buffer after ints
+									kb.nextLine(); 
 									
 									if (inventory.idDuplicate(bookID)) {
 										System.out.println("Duplicate Book ID. Enter unique Book ID");
@@ -56,7 +56,7 @@ public class BookMenu {
 									
 									System.out.println("Need to add more books: enter yes or no");
 									response = kb.next();
-									kb.nextLine(); // Clear buffer
+									kb.nextLine();
 									
 									if (response.equalsIgnoreCase("yes")) {
 										input = true;
@@ -65,12 +65,12 @@ public class BookMenu {
 									}
 								} catch (InputMismatchException e) {
 									System.out.println("Invalid input. Enter the correct book information.");
-									kb.nextLine(); // Clear bad input from buffer
+									kb.nextLine(); 
 									input = true;
 								}
 							}
 							
-							input = true; // Reset input flag for future use
+							input = true; 
 							break;
 							
 						case 2:
@@ -78,7 +78,7 @@ public class BookMenu {
 								try {
 									boolean borrow;
 									System.out.println("Enter ID of book to be borrowed:");
-									// Your case 2 logic continues here...
+								
 									int ID = kb.nextInt();
 									
 									kb.nextLine();
@@ -93,13 +93,13 @@ public class BookMenu {
 									else if (!inventory.hasBook(ID)) { 
 										System.out.println("Book not found in database.");
 									} 
-									input = false; // Placeholder break out of internal loop
+									input = false; 
 								} catch (InputMismatchException e) {
 									System.out.println("Invalid Book ID. Book not found in database");
 									kb.nextLine();
 								}
 							}
-							input = true; // Reset input flag
+							input = true; 
 							break;
 							
 						case 3:
@@ -132,7 +132,23 @@ public class BookMenu {
 							break;
 							
 						case 4:
-							// Handle search by title
+							try {
+							LinkedList<Book> bookTitle = new LinkedList<>();
+							String bt="";
+							System.out.println("Enter book title or partial title to search in Library database:");
+							bt = kb.nextLine();
+							bookTitle =inventory.searchByTitle(bt);
+							if(bookTitle.isEmpty()) {
+								System.out.println("No matching titles found.");
+							}
+							for(Book t:bookTitle) {
+								System.out.println("Matching book titles: "+ t );
+							}
+							}catch(InputMismatchException e) {
+								System.out.println("Invalid Book title format. Enter correct or partial book title.");
+								kb.nextLine();
+							}
+							input = true;
 							break;
 							
 						case 5:
@@ -147,13 +163,13 @@ public class BookMenu {
 				}
 			} catch (InputMismatchException e) {
 				System.out.println("Invalid option type. Please enter a valid number.");
-				kb.nextLine(); // Clear the invalid input from scanner buffer
-				option = 0;    // Reset option so loop continues safely
+				kb.nextLine(); 
+				option = 0;   
 			}
 			
-		} while (option != 6); // Loop exits only when option is 6
+		} while (option != 6); 
 		
-		kb.close(); // Close scanner when program terminates
+		kb.close(); 
 	}
 }
 

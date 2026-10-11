@@ -4,6 +4,7 @@ public class Inventory {
 	LinkedList<Book> bookInventory = new LinkedList<Book>();
 	
 	LinkedList<Book> lendingInventory = new LinkedList<Book>();
+	
 	public void addBook(int id,String t,String a, int i,int p) {
 		Book addBook = new Book(id,t,a,i,p);
 		bookInventory.add(addBook);
@@ -40,18 +41,19 @@ public class Inventory {
 		}
 	}
 	
-	public LinkedList<Book> searchByTitle(String mt){
+	public LinkedList<Book> searchByTitle(String t){
 		LinkedList <Book> matching = new LinkedList<>();		
 		
 		for(Book b: bookInventory) {
 			String ct =b.getTitle();
 			
-			if(ct.toUpperCase().contains(mt.toUpperCase())) {
+			if(ct.toUpperCase().contains(t.toUpperCase())) {
 				matching.add(b);
 			}
 		}
 		return matching;
 	}
+	
 	
 	public boolean idDuplicate(int i) {
 		for(Book b:bookInventory) {
