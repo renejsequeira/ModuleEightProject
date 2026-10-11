@@ -96,4 +96,7 @@ public class Inventory {
 	
 	}
 
+	public int getMainInventoryCount() {
+		return bookInventory.size();
+	}
 }

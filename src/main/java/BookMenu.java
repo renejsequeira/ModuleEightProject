@@ -66,7 +66,7 @@ public class BookMenu {
 								} catch (InputMismatchException e) {
 									System.out.println("Invalid input. Enter the correct book information.");
 									kb.nextLine(); 
-									input = true;
+									//input = true;
 								}
 							}
 							
@@ -158,6 +158,7 @@ public class BookMenu {
 							break;
 							
 						case 6:
+							System.out.println("Total number of books available: "+ inventory.getMainInventoryCount());
 							System.out.println("Exiting the Library System. Goodbye!");
 							break;
 					}
